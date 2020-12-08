@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+<title>Sistema de busca de filmes</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<style type="text/css">
+@charset "ISO-8859-1";
+
+.styled-table {
+	border-collapse: collapse;
+	margin: 25px 0;
+	font-size: 0.9em;
+	font-family: sans-serif;
+	min-width: 400px;
+	box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+	background-color: #009879;
+	color: #ffffff;
+	text-align: left;
+}
+
+h1, p {
+font-family: Arial, Helvetica, sans-serif;
+}
+
+a {
+  color: hotpink;
+   background-color: red;
+   color: white;
+   font-size: 13px;
+   text-decoration: none;
+   padding: 8px;
+   font-family: sans-serif;
+}
+
+.styled-table th, .styled-table td {
+	padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+	border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+	background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+	border-bottom: 2px solid #009879;
+}
+
+.styled-table tbody tr.active-row {
+	font-weight: bold;
+	color: #009879;
+}
+</style>
+</head>
+<body>
+	<h1>Busca de filmes</h1>
+	<form action="#" th:action="@{/filme}" th:object="${buscaIn}"
+		method="post">
+		<p>
+			Ator <br /> <input type="text" th:field="*{ator}" />
+		</p>
+			<input type="submit" value="Submit" /> <input type="reset"
+				value="Reset" />
+		</p>		 <h2><a href="/downloadPPT">Download</a></h2>
+	</form>
+	
+		<p th:text="${sem_filme}" />	
+
+	<div>
+		<table class="styled-table">
+			<tr>
+				<th>Nome original</th>
+				<th>Data de lançamento</th>
+				<th>Criadores</th>
+				<th>Elenco</th>
+				<th>
+			</tr>
+			<tr th:each="filme : ${filmes} ">
+				<td th:text="${filme.original_title}"></td>
+				<td th:text="${filme.release_date}"></td>
+				<td th:text="${filme.criadores}"></td>
+				<td th:text="${filme.elenco}"></td>
+			</tr>
+		</table>
+		
+		
+	</div>
+</body>
+</html>
